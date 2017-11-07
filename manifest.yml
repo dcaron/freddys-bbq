@@ -3,22 +3,18 @@ buildpack: java_buildpack_offline
 services:
   - sso
   - service-registry
+  - config-server
 
 applications:
- 
- - name: custom-registry
-   path: microsec-custom-registry/target/microsec-custom-registry.jar
      
  - name: customer-portal
    path: microsec-customer-portal/target/microsec-customer-portal.jar
    services:
-   - config-server
    - circuit-breaker
 
  - name: menu-service
    path: microsec-menu-service/target/microsec-menu-service.jar
    services:
-   - config-server
    - mysql
    env:
      GRANT_TYPE: client_credentials
@@ -26,7 +22,6 @@ applications:
  - name: admin-portal
    path: microsec-admin-portal/target/microsec-admin-portal.jar
    services:
-   - config-server
    - circuit-breaker
 
  - name: order-service
